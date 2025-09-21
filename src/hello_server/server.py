@@ -17,17 +17,17 @@ from smithery.decorators import smithery
 from datetime import datetime, timedelta
 
 # --- Config schema for user session ---
-class ConfigSchema(BaseModel):
-    api_key: str = Field(..., description="Your Splitwise API key")
-    consumer_key: str = Field(..., description="Your Splitwise consumer key")
-    consumer_secret: str = Field(..., description="Your Splitwise consumer secret")
+# class ConfigSchema(BaseModel):
+#     api_key: str = Field(..., description="Your Splitwise API key")
+#     consumer_key: str = Field(..., description="Your Splitwise consumer key")
+#     consumer_secret: str = Field(..., description="Your Splitwise consumer secret")
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-# class ConfigSchema(BaseModel):
-#     api_key: str
-#     consumer_key: str
-#     consumer_secret: str
+class ConfigSchema(BaseSettings):
+    api_key: str
+    consumer_key: str
+    consumer_secret: str
 
     # model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
@@ -166,4 +166,5 @@ def create_server() -> FastMCP:
             return {"error": f"Unexpected error: {str(e)}"}
 
     return server
+
 
